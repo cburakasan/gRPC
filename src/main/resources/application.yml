@@ -1,0 +1,24 @@
+server:
+  port: 6614
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5491/productDb
+    username: product
+    password: admin123
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+grpc:
+  client:
+    grpc-discount-service:
+      address: static://localhost:9011
+      negotiation-type: plaintext
+    grpc-category-service:
+      address: static://localhost:9011
+      negotiation-type: plaintext
