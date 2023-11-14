@@ -1,8 +1,6 @@
 package com.microservice.product.service.impl;
 
-import com.microservice.product.model.dto.AllCategoryResponse;
-import com.microservice.product.model.dto.DiscountReq;
-import com.microservice.product.model.dto.DiscountResp;
+import com.microservice.product.model.dto.*;
 import com.microservice.product.service.DiscountService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -37,5 +35,14 @@ public class DiscountServiceImpl implements DiscountService {
                 restTemplate.getForEntity("http://localhost:6616/api/category/all", AllCategoryResponse.class);
 
         return allCategoryResponse.getBody();
+    }
+
+    @Override
+    public AddDiscountCategoryResp addDiscountCategory(AddDiscountCategoryRequest addDiscountCategoryRequest) {
+
+        ResponseEntity<AddDiscountCategoryResp> addDiscountCategory =
+                restTemplate.postForEntity("http://localhost:6616/api/discount/add/category/list",addDiscountCategoryRequest,AddDiscountCategoryResp.class);
+
+        return addDiscountCategory.getBody();
     }
 }

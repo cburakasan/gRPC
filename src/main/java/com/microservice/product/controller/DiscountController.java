@@ -7,9 +7,7 @@ import com.microservice.product.service.grpc.CategoryDiscountGrpcService;
 import com.microservice.product.service.grpc.DiscountGrpcService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
@@ -53,6 +51,16 @@ public class DiscountController {
     @GetMapping("/categories/grpc")
     public ResponseEntity<AllCategoryResp> getAllDiscountCategoryByGrpc(){
         return ResponseEntity.ok(categoryDiscountGrpcService.getAllCategoryByDiscount());
+    }
+
+    @PostMapping("/add/category/list/rest")
+    public ResponseEntity<AddDiscountCategoryResp> addDiscountCategoryRest(@RequestBody AddDiscountCategoryRequest addDiscountCategoryRequest){
+       return ResponseEntity.ok(discountService.addDiscountCategory(addDiscountCategoryRequest));
+    }
+
+    @PostMapping("/add/category/list/grpc")
+    public ResponseEntity<AddDiscountCategoryResp> addDiscountCategoryGrpc(@RequestBody AddDiscountCategoryRequest addDiscountCategoryRequest){
+        return ResponseEntity.ok(discountGrpcService.addDiscountCategoryList(addDiscountCategoryRequest));
     }
 }
 
