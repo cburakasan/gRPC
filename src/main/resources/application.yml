@@ -23,11 +23,11 @@ spring:
 grpc:
   client:
     grpc-discount-service:
-      address: static://localhost:9011
+      address: static://138.68.104.56:9011
       negotiation-type: plaintext
     grpc-category-service:
-      address: static://localhost:9011
+      address: static://138.68.104.56:9011
       negotiation-type: plaintext
     grpc-discountCategory-service:
-      address: static://localhost:9011
+      address: static://138.68.104.56:9011
       negotiation-type: plaintext
