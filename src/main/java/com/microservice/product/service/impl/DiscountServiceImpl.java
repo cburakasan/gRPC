@@ -23,7 +23,7 @@ public class DiscountServiceImpl implements DiscountService {
     public DiscountResp callGrpcRestService(DiscountReq discountRequest) {
 
         ResponseEntity<DiscountResp> discountRespResponseEntity =
-                restTemplate.postForEntity("http://localhost:6616/api/discount/get", discountRequest, DiscountResp.class);
+                restTemplate.postForEntity("http://137.184.89.250:6616/api/discount/get", discountRequest, DiscountResp.class);
 
         return discountRespResponseEntity.getBody();
     }
@@ -32,7 +32,7 @@ public class DiscountServiceImpl implements DiscountService {
     public AllCategoryResponse getAllCategoriesByDiscount() {
 
         ResponseEntity<AllCategoryResponse> allCategoryResponse =
-                restTemplate.getForEntity("http://localhost:6616/api/category/all", AllCategoryResponse.class);
+                restTemplate.getForEntity("http://137.184.89.250:6616/api/category/all", AllCategoryResponse.class);
 
         return allCategoryResponse.getBody();
     }
@@ -41,7 +41,7 @@ public class DiscountServiceImpl implements DiscountService {
     public AddDiscountCategoryResp addDiscountCategory(AddDiscountCategoryRequest addDiscountCategoryRequest) {
 
         ResponseEntity<AddDiscountCategoryResp> addDiscountCategory =
-                restTemplate.postForEntity("http://localhost:6616/api/discount/add/category/list",addDiscountCategoryRequest,AddDiscountCategoryResp.class);
+                restTemplate.postForEntity("http://137.184.89.250:6616/api/discount/add/category/list",addDiscountCategoryRequest,AddDiscountCategoryResp.class);
 
         return addDiscountCategory.getBody();
     }
