@@ -21,24 +21,19 @@ public class DiscountController {
 
     private final CategoryDiscountGrpcService categoryDiscountGrpcService;
 
-    @GetMapping("/grpc")
-    public ResponseEntity<DiscountServiceResponse> callDiscountGrpcService() {
+    @PostMapping("/grpc")
+    public ResponseEntity<DiscountServiceResponse> callDiscountGrpcService(@RequestBody DiscountReq discountReq) {
         DiscountRequest discountRequest = DiscountRequest.newBuilder()
-                .setCode("CBA")
-                .setPrice(100)
-                .setExternalCategoryId(518)
+                .setCode(discountReq.getCode())
+                .setPrice(discountReq.getPrice().floatValue())
+                .setExternalCategoryId(discountReq.getExternalCategoryId())
                 .build();
 
         return ResponseEntity.ok(discountGrpcService.getDiscount(discountRequest));
     }
 
-    @GetMapping("/rest")
-    public ResponseEntity<DiscountResp> callDiscountRestService(){
-        DiscountReq discountRequest = DiscountReq.builder()
-                .code("CBA")
-                .price(new BigDecimal(100))
-                .externalCategoryId(518)
-                .build();
+    @PostMapping("/rest")
+    public ResponseEntity<DiscountResp> callDiscountRestService(@RequestBody DiscountReq discountRequest){
 
         return ResponseEntity.ok(discountService.callGrpcRestService(discountRequest));
     }
